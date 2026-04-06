@@ -85,7 +85,10 @@ export async function POST(req: NextRequest) {
     // Fallback to mock responses
     const reply = getMockReply(userText);
     return NextResponse.json({ reply });
-  } catch {
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("[TrustBot API error]", err);
+    }
     return NextResponse.json(
       { reply: "I'm having trouble connecting. Please try again in a moment." },
       { status: 500 }

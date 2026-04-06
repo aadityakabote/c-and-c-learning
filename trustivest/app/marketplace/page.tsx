@@ -32,7 +32,7 @@ export default function MarketplacePage() {
         s.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
       const matchIndustry = industry === "All" || s.industry === industry;
       const matchStage = stage === "All" || s.stage === stage;
-      const matchFunding = s.fundingNeeded >= range.min && s.fundingNeeded < range.max;
+      const matchFunding = s.fundingNeeded >= range.min && s.fundingNeeded <= range.max;
       return matchSearch && matchIndustry && matchStage && matchFunding;
     });
   }, [search, industry, stage, fundingRange]);
